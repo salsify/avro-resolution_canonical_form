@@ -1,0 +1,11 @@
+inherit_gem:
+  salsify_rubocop: conf/rubocop.yml
+
+Style/FileName:
+  Exclude:
+    - 'lib/avro-resolution_canonical_form.rb'
+
+RSpec/FilePath:
+  Enabled: false
+
+
