@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'avro/resolution_canonical_form/version'
+require 'avro-resolution_canonical_form/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'avro-resolution_canonical_form'
-  spec.version       = Avro::ResolutionCanonicalForm::VERSION
+  spec.version       = AvroResolutionCanonicalForm::VERSION
   spec.authors       = ['Salsify, Inc']
   spec.email         = ['engineering@salsify.com']
 

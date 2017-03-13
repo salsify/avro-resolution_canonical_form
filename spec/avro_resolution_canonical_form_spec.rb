@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Avro::ResolutionCanonicalForm, 'VERSION' do
+describe AvroResolutionCanonicalForm, 'VERSION' do
   it "has a version number" do
-    expect(Avro::ResolutionCanonicalForm::VERSION).not_to be nil
+    expect(AvroResolutionCanonicalForm::VERSION).not_to be nil
   end
 end
