@@ -1,3 +1,3 @@
 module AvroResolutionCanonicalForm
-  VERSION = '0.1.0'.freeze
+  VERSION = '0.2.0.rc0'.freeze
 end

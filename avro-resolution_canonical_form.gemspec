@@ -1,4 +1,5 @@
 # coding: utf-8
+
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'avro-resolution_canonical_form/version'
@@ -33,5 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'salsify_rubocop', '~> 0.46.0'
   spec.add_development_dependency 'overcommit'
   spec.add_development_dependency 'simplecov'
-  spec.add_runtime_dependency 'avro-salsify-fork', '>= 1.9.0.5'
+  spec.add_runtime_dependency 'avro-patches'
 end

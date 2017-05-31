@@ -34,13 +34,12 @@ to include `default` and `aliases` attributes:
 
 ## Ruby Support
 
-This currently gem requires the [avro-salsify-fork](https://github.com/salsify/avro)
-gem due to a bug in the Avro Ruby gem support for defaults. The fix for this issue
-will be included in Avro v1.8.2.
+This currently gem requires the [avro-patches](https://github.com/salsify/avro-patches)
+gem.
 
 ### Aliases
 
-The Avro Ruby gem, including the avro-salsify-fork, does not yet include support
+The Avro Ruby gem, including the avro-patches, does not yet include support
 for aliases. Aliases are included in the specification of the Resolution Canonical
 Form above, but not yet supported by this gem.
 
