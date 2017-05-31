@@ -1,4 +1,4 @@
-require 'avro'
+require 'avro-patches'
 
 module Avro
   class ResolutionCanonicalForm < SchemaNormalization
