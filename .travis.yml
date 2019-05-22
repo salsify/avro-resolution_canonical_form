@@ -1,7 +1,10 @@
 language: ruby
 rvm:
-  - 2.3.3
-before_install: gem install bundler -v 1.14.6
+  - 2.4.6
+  - 2.5.5
+  - 2.6.3
+before_script:
+  - bundle exec appraisal install --jobs=3
 script:
   - bundle exec rubocop
-  - bundle exec rspec
+  - bundle exec appraisal rspec
