@@ -2,7 +2,7 @@ require 'avro-patches'
 
 module Avro
   class ResolutionCanonicalForm < SchemaNormalization
-    DECIMAL_LOGICAL_TYPE = "decimal".freeze
+    DECIMAL_LOGICAL_TYPE = 'decimal'.freeze
 
     def self.to_resolution_form(schema)
       new.to_resolution_form(schema)
