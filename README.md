@@ -23,12 +23,14 @@ Or install it yourself as:
 
 ## Resolution Canonical Form
 
-The Resolution Canonical Form extends the [Parsing Canonical Form](http://avro.apache.org/docs/1.8.1/spec.html#Parsing+Canonical+Form+for+Schemas)
-to include `default` and `aliases` attributes:
+The Resolution Canonical Form extends the [Parsing Canonical Form](http://avro.apache.org/docs/1.10.0/spec.html#Parsing+Canonical+Form+for+Schemas)
+to include `default` and `aliases` attributes and logical type for decimals:
 
+* [STRIP] Keep only attributes that are relevant to resolution, which are:
+  `name, type, fields, symbols, items, values, size, default, aliases, logical_type(=decimal), precision, scale`
 * [ORDER] Order the appearance of fields in JSON objects as follows:
   `name, type, fields, symbols, items, values, size, default, aliases`
-* [ALIASES] [Aliases](http://avro.apache.org/docs/1.8.1/spec.html#Aliases) for
+* [ALIASES] [Aliases](http://avro.apache.org/docs/1.10.0/spec.html#Aliases) for
   named types and fields are converted to their fullname, using applicable
   namespace, and sorted.
 
@@ -67,7 +69,7 @@ schema = Avro::Schema.parse(<<-JSON)
 JSON
 
 Avro::ResolutionCanonicalForm.to_resolution_form(schema)
-#=> {"name":"example.dimensions","type":"record","fields":[{"name":"height","type":"int","default":1},{"name":"width","type":"int"}]}
+#=> => "{\"name\":\"example.dimensions\",\"type\":\"record\",\"fields\":[{\"name\":\"height\",\"type\":\"int\",\"default\":1},{\"name\":\"width\",\"type\":\"int\",\"aliases\":[\"across\"]}],\"aliases\":[\"eg.sizing\",\"example.dims\"]}"
 ```
 
 A new method, `#sha256_resolution_fingerprint`, is added to `Avro::Schema` to
@@ -77,7 +79,7 @@ the existing `#sha256_fingerprint` which is based on the Parsing Canonical Form.
 ```ruby
 schema.sha256_resolution_fingerprint
 
-#=> 80361294467930602613800428579400567035362599364974249578710466785512094641526
+#=> 71676413924523555041213790831440929350080614901361467355865523343334332562796
 ```
 
 ## Development

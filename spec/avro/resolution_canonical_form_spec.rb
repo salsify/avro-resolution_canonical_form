@@ -19,6 +19,47 @@ describe Avro::ResolutionCanonicalForm do
       end
     end
 
+    context "bytes with decimal logical type" do
+      let(:schema) do
+        Avro::Schema.parse(<<-JSON)
+          {
+            "type": "bytes",
+            "logicalType": "decimal",
+            "precision": 4,
+            "scale": 2
+          }
+        JSON
+      end
+
+      let(:expected_type) do
+        <<-JSON.strip
+          {"type":"bytes","logicalType":"decimal","precision":4,"scale":2}
+        JSON
+      end
+
+      it_behaves_like "resolution normalization"
+    end
+
+    context "bytes with decimal logical type and only precision" do
+      let(:schema) do
+        Avro::Schema.parse(<<-JSON)
+          {
+            "type": "bytes",
+            "logicalType": "decimal",
+            "precision": 5
+          }
+        JSON
+      end
+
+      let(:expected_type) do
+        <<-JSON.strip
+          {"type":"bytes","logicalType":"decimal","precision":5}
+        JSON
+      end
+
+      it_behaves_like "resolution normalization"
+    end
+
     context "a record" do
       let(:schema) do
         Avro::Schema.parse(<<-JSON)
@@ -63,9 +104,8 @@ describe Avro::ResolutionCanonicalForm do
         JSON
       end
       let(:expected_type) do
-        # This is expected to change if alias support is added
         <<-JSON.strip
-          {"name":"random.test","type":"record","fields":[{"name":"height","type":"int","default":1}]}
+          {"name":"random.test","type":"record","fields":[{"name":"height","type":"int","default":1,"aliases":["how.tall","vertical"]}]}
         JSON
       end
 
@@ -109,9 +149,8 @@ describe Avro::ResolutionCanonicalForm do
         JSON
       end
       let(:expected_type) do
-        # This is expected to change if alias support is added
         <<-JSON.strip
-          {"name":"random.test","type":"record","fields":[{"name":"width","type":"int"}]}
+          {"name":"random.test","type":"record","fields":[{"name":"width","type":"int"}],"aliases":["random.example","resolution.test"]}
         JSON
       end
 
@@ -124,7 +163,7 @@ describe Avro::ResolutionCanonicalForm do
           {
             "type": "enum",
             "name": "suit",
-            "aliase": ["family"],
+            "aliases": ["family"],
             "namespace": "cards",
             "doc": "the different suits of cards",
             "symbols": ["club", "hearts", "diamond", "spades"]
@@ -132,9 +171,31 @@ describe Avro::ResolutionCanonicalForm do
         JSON
       end
       let(:expected_type) do
-        # This is expected to change if alias support is added
         <<-JSON.strip
-          {"name":"cards.suit","type":"enum","symbols":["club","hearts","diamond","spades"]}
+          {"name":"cards.suit","type":"enum","symbols":["club","hearts","diamond","spades"],"aliases":["cards.family"]}
+        JSON
+      end
+
+      it_behaves_like "resolution normalization"
+    end
+
+    context "an enum type with a default" do
+      let(:schema) do
+        Avro::Schema.parse(<<-JSON)
+          {
+            "type": "enum",
+            "name": "suit",
+            "aliases": ["family"],
+            "namespace": "cards",
+            "doc": "the different suits of cards",
+            "symbols": ["club", "hearts", "diamond", "spades"],
+            "default": "diamond"
+          }
+        JSON
+      end
+      let(:expected_type) do
+        <<-JSON.strip
+          {"name":"cards.suit","type":"enum","symbols":["club","hearts","diamond","spades"],"default":"diamond","aliases":["cards.family"]}
         JSON
       end
 
@@ -154,9 +215,33 @@ describe Avro::ResolutionCanonicalForm do
         JSON
       end
       let(:expected_type) do
-        # This is expected to change if alias support is added
         <<-JSON.strip
-          {"name":"db.id","type":"fixed","size":64}
+          {"name":"db.id","type":"fixed","size":64,"aliases":["db.identifier","internal.id"]}
+        JSON
+      end
+
+      it_behaves_like "resolution normalization"
+    end
+
+    context "fixed type with decimal logical type" do
+      let(:schema) do
+        Avro::Schema.parse(<<-JSON)
+          {
+            "type": "fixed",
+            "name": "my_decimal",
+            "aliases": ["precise", "number.logical"],
+            "namespace": "logical",
+            "size": 10,
+            "logicalType": "decimal",
+            "precision": 8,
+            "scale": 2
+          }
+        JSON
+      end
+      let(:expected_type) do
+        # This is expected to change to the decimal logical type is fully supported for fixed in Avro Ruby
+        <<-JSON.strip
+          {"name":"logical.my_decimal","type":"fixed","size":10,"aliases":["logical.precise","number.logical"],"logicalType":"decimal"}
         JSON
       end
 
