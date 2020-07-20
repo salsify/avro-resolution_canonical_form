@@ -25,7 +25,7 @@ module Avro
     def normalize_field(field)
       extensions = {}
       extensions[:default] = field.default if field.default?
-      if field.respond_to?(:aliases) && field.aliases && !field.aliases.empty?
+      if field.aliases && !field.aliases.empty?
         extensions[:aliases] = field.aliases.sort
       end
 
@@ -33,7 +33,7 @@ module Avro
     end
 
     def add_logical_type(schema, serialized)
-      if schema.respond_to?(:logical_type) && schema.logical_type == DECIMAL_LOGICAL_TYPE
+      if schema.logical_type == DECIMAL_LOGICAL_TYPE
         extensions = { logicalType: DECIMAL_LOGICAL_TYPE }
         extensions[:precision] = schema.precision if schema.respond_to?(:precision) && schema.precision
         extensions[:scale] = schema.scale if schema.respond_to?(:scale) && schema.scale
@@ -49,10 +49,9 @@ module Avro
         # For enum defaults
         extensions[:default] = schema.default unless schema.default.nil?
       end
-      if schema.respond_to?(:fullname_aliases)
-        aliases = schema.fullname_aliases
-        extensions[:aliases] = aliases.sort unless aliases.empty?
-      end
+
+      aliases = schema.fullname_aliases
+      extensions[:aliases] = aliases.sort unless aliases.empty?
       extensions = add_logical_type(schema, extensions)
       super.merge(extensions)
     end
