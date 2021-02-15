@@ -1,5 +1,8 @@
 # avro-resolution_canonical_form
 
+## v0.4.0 (Unreleased)
+- Drop dependency on `avro-patches`.
+
 ## v0.3.0
 - Require Avro v1.10.
 - Include aliases, enum defaults, and decimal logical types in the resolution

@@ -28,16 +28,15 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'appraisal'
   spec.add_development_dependency 'bundler', '~> 2.0'
-  spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rspec', '~> 3.4'
+  spec.add_development_dependency 'rake', '~> 13.0'
+  spec.add_development_dependency 'rspec', '~> 3.8'
+  spec.add_development_dependency 'rspec_junit_formatter'
   spec.add_development_dependency 'salsify_rubocop', '~> 0.46.0'
   spec.add_development_dependency 'overcommit'
   spec.add_development_dependency 'simplecov'
 
   spec.add_runtime_dependency 'avro', '~> 1.10.0'
-  spec.add_runtime_dependency 'avro-patches', '< 2.0.0'
 
   spec.post_install_message = %(
 avro-resolution_canonical_form now requires Avro v1.10.
