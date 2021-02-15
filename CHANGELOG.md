@@ -1,6 +1,6 @@
 # avro-resolution_canonical_form
 
-## v0.4.0 (Unreleased)
+## v0.4.0
 - Drop dependency on `avro-patches`.
 - Add support for Ruby 3.0.
 - Drop support for Ruby < 2.6.
