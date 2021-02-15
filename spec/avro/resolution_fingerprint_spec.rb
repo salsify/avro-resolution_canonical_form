@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Avro::Schema, "#sha256_resolution_fingerprint" do
   describe "#sha256_resolution_fingerprint" do
     let(:fingerprint) { schema.sha256_resolution_fingerprint }

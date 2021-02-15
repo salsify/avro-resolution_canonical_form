@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 describe Avro::ResolutionCanonicalForm do
   let(:resolution_form) { described_class.to_resolution_form(schema) }
 
-  describe "self.to_resolution_form" do
+  describe ".to_resolution_form" do
     context "primitive types" do
-      %w(null boolean string bytes int long float double).each do |type|
+      ['null', 'boolean', 'string', 'bytes', 'int', 'long', 'float', 'double'].each do |type|
         it "returns the resolution canonical form for '#{type}'" do
           schema = Avro::Schema.parse(<<-JSON)
             { "type": "#{type}" }

@@ -2,6 +2,9 @@
 
 ## v0.4.0 (Unreleased)
 - Drop dependency on `avro-patches`.
+- Add support for Ruby 3.0.
+- Drop support for Ruby < 2.6.
+- Use frozen string literals.
 
 ## v0.3.0
 - Require Avro v1.10.
