@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Avro
   class Schema
     # Returns the SHA-256 fingerprint of the Resolution Canonical Form for the

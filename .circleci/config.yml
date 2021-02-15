@@ -2,14 +2,14 @@ version: 2.1
 jobs:
   lint:
     docker:
-      - image: salsify/ruby_ci:2.5.8
+      - image: salsify/ruby_ci:2.6.6
     working_directory: ~/avro-resolution_canonical_form
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v2-gems-ruby-2.5.8-{{ checksum "avro-resolution_canonical_form.gemspec" }}-{{ checksum "Gemfile" }}
-            - v2-gems-ruby-2.5.8-
+            - v2-gems-ruby-2.6.6-{{ checksum "avro-resolution_canonical_form.gemspec" }}-{{ checksum "Gemfile" }}
+            - v2-gems-ruby-2.6.6-
       - run:
           name: Install Gems
           command: |
@@ -18,7 +18,7 @@ jobs:
               bundle clean
             fi
       - save_cache:
-          key: v2-gems-ruby-2.5.8-{{ checksum "avro-resolution_canonical_form.gemspec" }}-{{ checksum "Gemfile" }}
+          key: v2-gems-ruby-2.6.6-{{ checksum "avro-resolution_canonical_form.gemspec" }}-{{ checksum "Gemfile" }}
           paths:
             - "vendor/bundle"
             - "gemfiles/vendor/bundle"
@@ -66,6 +66,6 @@ workflows:
           matrix:
             parameters:
               ruby-version:
-                - "2.5.8"
                 - "2.6.6"
                 - "2.7.2"
+                - "3.0.0"

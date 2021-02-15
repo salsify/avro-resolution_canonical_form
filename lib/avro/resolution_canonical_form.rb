@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Avro
   class ResolutionCanonicalForm < Avro::SchemaNormalization
-    DECIMAL_LOGICAL_TYPE = 'decimal'.freeze
+    DECIMAL_LOGICAL_TYPE = 'decimal'
 
     def self.to_resolution_form(schema)
       new.to_resolution_form(schema)
@@ -23,9 +25,7 @@ module Avro
     def normalize_field(field)
       extensions = {}
       extensions[:default] = field.default if field.default?
-      if field.aliases && !field.aliases.empty?
-        extensions[:aliases] = field.aliases.sort
-      end
+      extensions[:aliases] = field.aliases.sort if field.aliases && !field.aliases.empty?
 
       super.merge(extensions)
     end
@@ -43,9 +43,9 @@ module Avro
 
     def normalize_named_type(schema, attributes = {})
       extensions = {}
-      if schema.respond_to?(:default)
+      if schema.respond_to?(:default) && !schema.default.nil?
         # For enum defaults
-        extensions[:default] = schema.default unless schema.default.nil?
+        extensions[:default] = schema.default
       end
 
       aliases = schema.fullname_aliases
