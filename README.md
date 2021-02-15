@@ -34,17 +34,6 @@ to include `default` and `aliases` attributes and logical type for decimals:
   named types and fields are converted to their fullname, using applicable
   namespace, and sorted.
 
-## Ruby Support
-
-This currently gem requires the [avro-patches](https://github.com/salsify/avro-patches)
-gem.
-
-### Aliases
-
-The Avro Ruby gem, including the avro-patches, does not yet include support
-for aliases. Aliases are included in the specification of the Resolution Canonical
-Form above, but not yet supported by this gem.
-
 ## Usage
 
 `Avro::ResolutionCanonicalForm` subclasses `Avro::SchemaNormalization`
