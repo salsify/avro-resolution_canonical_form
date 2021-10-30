@@ -241,9 +241,8 @@ describe Avro::ResolutionCanonicalForm do
         JSON
       end
       let(:expected_type) do
-        # This is expected to change to the decimal logical type is fully supported for fixed in Avro Ruby
         <<-JSON.strip
-          {"name":"logical.my_decimal","type":"fixed","size":10,"aliases":["logical.precise","number.logical"],"logicalType":"decimal"}
+          {"name":"logical.my_decimal","type":"fixed","size":10,"aliases":["logical.precise","number.logical"],"logicalType":"decimal","precision":8,"scale":2}
         JSON
       end
 

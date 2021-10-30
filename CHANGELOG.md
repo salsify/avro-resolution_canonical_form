@@ -1,5 +1,8 @@
 # avro-resolution_canonical_form
 
+## v0.5.0
+- Require Avro v1.11.
+
 ## v0.4.0
 - Drop dependency on `avro-patches`.
 - Add support for Ruby 3.0.

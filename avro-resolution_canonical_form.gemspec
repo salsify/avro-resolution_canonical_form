@@ -38,18 +38,16 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'salsify_rubocop', '~> 1.0.1'
   spec.add_development_dependency 'simplecov'
 
-  spec.add_runtime_dependency 'avro', '~> 1.10.0'
+  spec.add_runtime_dependency 'avro', '~> 1.11.0'
 
   spec.post_install_message = %(
-avro-resolution_canonical_form now requires Avro v1.10.
+avro-resolution_canonical_form now requires Avro v1.11.
 
-New features in Avro Ruby v1.10 are now included in the canonical form:
-  - aliases
-  - enum defaults
-  - decimal logical types
+Avro Ruby v1.11 adds support for decimal logical type attributes on fixed types and these attributes are
+included in the resolution canonical form.
 
-Schemas that use any of these features will get a different fingerprint with
+Schemas that use these attributes will get a different fingerprint with
 this version. For projects that only use Ruby, use of these features is unlikely
-as they were previously unsupported.
+as they were previously unsupported, and encoding/decoding fixed decimals is not yet supported.
 )
 end

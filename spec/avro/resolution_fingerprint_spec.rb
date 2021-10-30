@@ -220,8 +220,7 @@ describe Avro::Schema, "#sha256_resolution_fingerprint" do
       end
 
       let(:expected) do
-        # This is expected to change to the decimal logical type is fully supported for fixed in Avro Ruby
-        109010719941921900671474271265982157895832083260603382288605526885391235302023
+        23517667177914137933250943145465353860935200939996710206937621647303295060610
       end
 
       it_behaves_like "a fingerprint based on the resolution canonical form"
