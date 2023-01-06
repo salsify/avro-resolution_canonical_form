@@ -1,5 +1,9 @@
 # avro-resolution_canonical_form
 
+## v0.6.0
+- Add support for Ruby 3.2.
+- Drop support for Ruby 2.6.
+
 ## v0.5.0
 - Require Avro v1.11.
 
