@@ -40,7 +40,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'salsify_rubocop', '~> 1.27.1'
   spec.add_development_dependency 'simplecov'
 
-  spec.add_runtime_dependency 'avro', '~> 1.11.0'
+  spec.add_runtime_dependency 'avro', '~> 1.11'
 
   spec.post_install_message = %(
 avro-resolution_canonical_form now requires Avro v1.11.
