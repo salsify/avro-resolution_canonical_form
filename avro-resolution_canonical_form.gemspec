@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.8'
   spec.add_development_dependency 'rspec_junit_formatter'
-  spec.add_development_dependency 'salsify_rubocop', '~> 1.27.1'
+  spec.add_development_dependency 'salsify_rubocop', '~> 1.74.0'
   spec.add_development_dependency 'simplecov'
 
   spec.add_runtime_dependency 'avro', '~> 1.11'
